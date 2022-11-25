@@ -20,13 +20,17 @@ def find_files(suffix, path):
     if path == None:
         return None
     file_list = []
-    dir_list = os.listdir(path)
+    if os.path.isdir(path):
+        dir_list = os.listdir(path)
+    else: 
+        return file_list
+    
     for dir in dir_list:
         file = os.path.join(path, dir)
         if (os.path.isfile(file) and file.endswith(suffix)):
             file_list.append(file)
         elif os.path.isdir(file):
-            file_list += find_files(suffix, file)
+            file_list.extend(find_files(suffix, file))
     return file_list
 
 # Add your own test cases: include at least three test cases
@@ -37,11 +41,9 @@ print(find_files(
     '.c', 'testdir'))
 
 # Test Case 2
-# Test Case 2
 # Find all files with '.c' from a empty folder
 print(find_files('.c', 'testdir'))
 
-# Test Case 3
 # Test Case 3
 # Find all files with '.c' from a folder does not contain '.c' suffix file
 print(find_files('.c', 'testdir'))
