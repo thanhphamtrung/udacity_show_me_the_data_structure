@@ -55,3 +55,15 @@ parentGr.add_group(childGr)
 print(is_user_in_group('marry', parentGr))  # expect True
 print(is_user_in_group('henry', parentGr))  # expect False
 
+child_user = "child_user"
+childGr.add_user(child_user)
+
+# Test Case 2
+print(is_user_in_group(child_user, sub_childGr))  # False
+
+# Test Case 3
+print(is_user_in_group(child_user, childGr))  # True
+
+# Test Case 4
+print(is_user_in_group(child_user, parentGr))  # True
+
